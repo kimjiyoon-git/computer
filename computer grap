@@ -15,7 +15,7 @@ void MyDisplay() {
 	glVertex3f(0.5, 0.5, 0.0);
 	glVertex3f(-0.5, 0.5, 0.0);
 
-	glMatrixMode(GL_MODELVIEW); // 작업 대상은 모델 뷰 행렬
+	glMatrixMode(GL_PROJECTION); //투상행렬 생성
 	glLoadIdentity(); // 현 변환행렬을 항등행렬(I)로 초기화
 	glColor3f(1.0, 0.0, 0.0); // 현 색을 빨간색으로 설정
 	glOrtho(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0); // 변경 전
@@ -24,7 +24,7 @@ void MyDisplay() {
 	glutWireTeapot(0.5); // 주전자 그린다. 
 
 
-	glMatrixMode(GL_MODELVIEW); // 작업 대상은 모델 뷰 행렬
+	glMatrixMode(GL_PROJECTION); //투상행렬 생성
 	glLoadIdentity(); // 현 변환행렬을 항등행렬(I)로 초기화
 	glOrtho(-3.0, 3.0, -3.0, 3.0, -1.0, 1.0); // 종횡비를 유지하면서 변경
 	glTranslatef(0.2, 0.0, 0.0);
