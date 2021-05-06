@@ -6,6 +6,7 @@
 // 1번 직교 투영중 가장 대표적인 평행 투영 방법을 이용하여 주전자를 윈도우에 그리는 것인데 주전자 하나만 나오고 주전자도 이상하게 나와 지금 어려움을 가지고 있습니다.
 // 며칠 쨰 고민해서 여러 코드 수정 중인데 어렵네요,,,
 
+
 void MyDisplay() {
 	glClear(GL_COLOR_BUFFER_BIT); // 배경색으로 화면을 지운다.
 	glViewport(0, 0, 300, 300);
@@ -18,11 +19,20 @@ void MyDisplay() {
 	glLoadIdentity(); // 현 변환행렬을 항등행렬(I)로 초기화
 	glColor3f(1.0, 0.0, 0.0); // 현 색을 빨간색으로 설정
 	glOrtho(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0); // 변경 전
+	glTranslatef(0.2, 0.0, 0.0);
+	glScalef(0.5, 0.5, 0.5); // 모델 좌표계 x,y,z 축의 눈금이 전역좌표계 눈금의 sx,sy,sz배만큼 되도록 크기를 조절하는 함수. 
+	glutWireTeapot(0.5); // 주전자 그린다. 
+
+
+	glMatrixMode(GL_MODELVIEW); // 작업 대상은 모델 뷰 행렬
+	glLoadIdentity(); // 현 변환행렬을 항등행렬(I)로 초기화
 	glOrtho(-3.0, 3.0, -3.0, 3.0, -1.0, 1.0); // 종횡비를 유지하면서 변경
 	glTranslatef(0.2, 0.0, 0.0);
 	glScalef(0.5, 0.5, 0.5); // 모델 좌표계 x,y,z 축의 눈금이 전역좌표계 눈금의 sx,sy,sz배만큼 되도록 크기를 조절하는 함수. 
 	glColor3f(1.0, 0.0, 0.0); // 현 색을 빨간색으로 설정
 	glutWireTeapot(0.5); // 주전자 그린다. 
+
+
 	glMatrixMode(GL_PROJECTION); //투상행렬 생성
 
 	glFlush();
@@ -43,6 +53,7 @@ int main(int argc, char**argv) {
 	glutMainLoop();
 	return 0;
 }
+
 
 
 //3번  원근 투영을 이용하여 육면체와 주전자의 앞뒤 관계에 의해 크기가 다르게 보이도록 그리는 것인데 맞는지 모르겠습니다,,,
